@@ -23,6 +23,6 @@ public class MyWorld extends World
     public void createFrog()
     {
         Frog playFrog = new Frog();
-        addObject(playFrog, 200, 300);
+        addObject(playFrog, 200, 350);
     }
 }
