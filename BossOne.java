@@ -33,9 +33,10 @@ public class BossOne extends Actor
     {
         if(bossHp <= 0)
         {
-             World world = getWorld();
+            MyWorld world = (MyWorld) getWorld();
             if (world != null) 
-            {
+            {   
+                world.gameWin();
                 world.removeObject(this);
             }
         }

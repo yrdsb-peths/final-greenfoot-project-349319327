@@ -19,6 +19,13 @@ public class MyWorld extends World
         super(600, 400, 1);
         createFrog();
         addBossOne();
+        
+    }
+    
+    public void gameWin()
+    {
+        Label gameOverLabel = new Label("You Win", 100);
+        addObject(gameOverLabel, 300, 200);
     }
     
     public void createFrog()
