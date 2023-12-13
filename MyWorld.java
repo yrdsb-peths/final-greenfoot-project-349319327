@@ -18,11 +18,23 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         createFrog();
+        addBossOne();
     }
     
     public void createFrog()
     {
         Frog playFrog = new Frog();
         addObject(playFrog, 200, 350);
+    }
+    
+    public void bossAtkOne()
+    {
+        BossBulletOne atkOne = new BossBulletOne();
+    }
+    
+    public void addBossOne()
+    {
+        BossOne snake = new BossOne();
+        addObject(snake, 500, 200);
     }
 }

@@ -14,6 +14,7 @@ public class Frog extends Actor
      */
     int frogHp = 10;
     String facing = "right";
+    
     public void act()
     {
         // Add your action code here.
@@ -28,6 +29,7 @@ public class Frog extends Actor
              facing = "right";
         }
         shoot();
+        hurt();
     }
     
     
@@ -41,7 +43,16 @@ public class Frog extends Actor
             turnTowards(mouseX, mouseY);
             
             // Create and add a bullet
-            getWorld().addObject(new Bullet(), getX(), getY()); // Create Bullet objects as per your implementation
+            getWorld().addObject(new Bullet(), getX(), getY()); 
+            
+        }
+    }
+    
+    public void hurt()
+    {
+        if(isTouching(BossBulletOne.class))
+        {
+            frogHp -= 1; 
         }
     }
 }
