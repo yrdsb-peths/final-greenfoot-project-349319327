@@ -29,7 +29,8 @@ public class Frog extends Actor
              facing = "right";
         }
         shoot();
-        hurt();
+        takeDamage();
+        frogDeath();
     }
     
     
@@ -48,11 +49,19 @@ public class Frog extends Actor
         }
     }
     
-    public void hurt()
+    public void takeDamage()
     {
         if(isTouching(BossBulletOne.class))
         {
             frogHp -= 1; 
+        }
+    }
+    
+    public void frogDeath()
+    {
+        if(frogHp <= 0)
+        {
+            getWorld().removeObject(this);
         }
     }
 }

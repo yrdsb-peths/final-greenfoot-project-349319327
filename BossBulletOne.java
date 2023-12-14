@@ -17,14 +17,25 @@ public class BossBulletOne extends Actor
     {
         // Add your action code here.
         move(bulletspeed);
+        boundary();
+        checkHitFrog();
     }
+    
     public void boundary()
     {   
         MyWorld world = (MyWorld) getWorld();
-        if(getX() >= world.getWidth())
-        {
-            
-            world.removeObject(this);
+        if (isAtEdge()) {
+            getWorld().removeObject(this);
+        }
+    }
+    
+    private void checkHitFrog() 
+    {
+        Frog frog = (Frog) getOneIntersectingObject(Frog.class);
+        if (frog != null) {
+            // Add actions if the bullet hits the frog
+            getWorld().removeObject(this);
+            frog.takeDamage(); // Assuming Frog has a method to handle taking damage
         }
     }
 }
