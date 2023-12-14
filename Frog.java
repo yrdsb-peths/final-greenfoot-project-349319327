@@ -18,12 +18,12 @@ public class Frog extends Actor
     public void act()
     {
         // Add your action code here.
-        if(Greenfoot.isKeyDown("left"))
+        if(Greenfoot.isKeyDown("a"))
         {
              move(-3);
              facing = "left";
         }
-        else if (Greenfoot.isKeyDown("right"))
+        else if (Greenfoot.isKeyDown("d"))
         {
              move(3);
              facing = "right";
