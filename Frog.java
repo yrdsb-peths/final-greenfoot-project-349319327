@@ -21,18 +21,30 @@ public class Frog extends Actor
         if(Greenfoot.isKeyDown("a"))
         {
              move(-3);
-             facing = "left";
+             
         }
         else if (Greenfoot.isKeyDown("d"))
         {
              move(3);
-             facing = "right";
+             
+        }
+        else if (Greenfoot.isKeyDown("w"))
+        {
+            moveUp();
+        }
+        else if (Greenfoot.isKeyDown("s"))
+        {
+            setLocation(getX(), getY()+5);
         }
         shoot();
-        takeDamage();
-        frogDeath();
+        
+        
     }
     
+    private void moveUp() 
+    {
+        setLocation(getX(), getY()-5);
+    }
     
     public void shoot()
     {
