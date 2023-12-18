@@ -37,8 +37,8 @@ public class Frog extends Actor
             setLocation(getX(), getY()+5);
         }
         shoot();
-        
-        
+        takeDamage();
+        frogDeath();
     }
     
     private void moveUp() 
