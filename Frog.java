@@ -18,20 +18,33 @@ public class Frog extends Actor
     public void act()
     {
         // Add your action code here.
-        if(Greenfoot.isKeyDown("left"))
+        if(Greenfoot.isKeyDown("a"))
         {
              move(-3);
-             facing = "left";
+             
         }
-        else if (Greenfoot.isKeyDown("right"))
+        else if (Greenfoot.isKeyDown("d"))
         {
              move(3);
-             facing = "right";
+             
+        }
+        else if (Greenfoot.isKeyDown("w"))
+        {
+            moveUp();
+        }
+        else if (Greenfoot.isKeyDown("s"))
+        {
+            setLocation(getX(), getY()+5);
         }
         shoot();
-        hurt();
+        takeDamage();
+        frogDeath();
     }
     
+    private void moveUp() 
+    {
+        setLocation(getX(), getY()-5);
+    }
     
     public void shoot()
     {
@@ -48,11 +61,19 @@ public class Frog extends Actor
         }
     }
     
-    public void hurt()
+    public void takeDamage()
     {
         if(isTouching(BossBulletOne.class))
         {
             frogHp -= 1; 
+        }
+    }
+    
+    public void frogDeath()
+    {
+        if(frogHp <= 0)
+        {
+            getWorld().removeObject(this);
         }
     }
 }
