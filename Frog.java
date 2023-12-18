@@ -12,36 +12,54 @@ public class Frog extends Actor
      * Act - do whatever the Frog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int frogHp = 10;
-    String facing = "right";
+    private int frogHp = 10;
+    private HealthBar healthBar;
+
+    public Frog() 
+    {
+         // Adjust position of the health bar
+    }
     
+    public void addedToWorld(World world) 
+    {
+        healthBar = new HealthBar(frogHp);
+        world.addObject(healthBar, getX(), getY() - 20); // Adjust position of the health bar
+    }
+
     public void act()
     {
         // Add your action code here.
-        if(Greenfoot.isKeyDown("a"))
-        {
-             move(-3);
-             
-        }
-        else if (Greenfoot.isKeyDown("d"))
-        {
-             move(3);
-             
-        }
-        else if (Greenfoot.isKeyDown("w"))
-        {
-            moveUp();
-        }
-        else if (Greenfoot.isKeyDown("s"))
-        {
-            setLocation(getX(), getY()+5);
-        }
+
+        handleMovement();
         shoot();
         takeDamage();
-        frogDeath();
+        
     }
     
-    private void moveUp() 
+    
+    
+    
+    public void handleMovement() 
+    {
+        if (Greenfoot.isKeyDown("a")) 
+        {
+            move(-3);
+        } 
+        
+        else if (Greenfoot.isKeyDown("d")) 
+        {
+            move(3);
+        } 
+        else if (Greenfoot.isKeyDown("w")) 
+        {
+            moveUp();
+        } 
+        else if (Greenfoot.isKeyDown("s")) 
+        {
+            setLocation(getX(), getY() + 5);
+        }
+    }
+    public void moveUp() 
     {
         setLocation(getX(), getY()-5);
     }
@@ -61,19 +79,30 @@ public class Frog extends Actor
         }
     }
     
-    public void takeDamage()
+    public void takeDamage() 
     {
-        if(isTouching(BossBulletOne.class))
+        BossBulletOne bullet = (BossBulletOne) getOneIntersectingObject(BossBulletOne.class);
+        if (bullet != null) 
         {
-            frogHp -= 1; 
+            frogHp -= 1;
+            getWorld().removeObject(bullet); // Remove the bullet hitting the frog
+            if (frogHp <= 0) 
+            {
+                frogDeath(); // Call frogDeath() if health is zero or below
+            }
+            healthBar.updateHealth(frogHp);
         }
     }
     
     public void frogDeath()
     {
-        if(frogHp <= 0)
-        {
-            getWorld().removeObject(this);
+        
+        MyWorld world = (MyWorld) getWorld();
+        if (world != null) 
+        {   
+            
+            world.removeObject(this);
         }
+        
     }
 }

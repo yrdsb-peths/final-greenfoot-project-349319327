@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class BossOne here.
@@ -18,9 +19,11 @@ public class BossOne extends Actor
     public void act()
     {
         // Add your action code here.
+        
         hit();
         die();
         shootSpeed();
+        
     }
     
     public void shootSpeed()
@@ -59,14 +62,17 @@ public class BossOne extends Actor
     }
     
     public void atkOne()
-    {   
-        Frog croc = getWorld().getObjects(Frog.class).get(0); 
-        if (croc != null) 
-        {
-            BossBulletOne bullet = new BossBulletOne();
-            getWorld().addObject(bullet, getX(), getY());
-            bullet.turnTowards(croc.getX(), croc.getY());
-        }
+    {      
+        List<Frog> frogs = getWorld().getObjects(Frog.class);
+         if (getWorld().getObjects(Frog.class).size() > 0) {
+        // Access the first Frog (index 0) from the list
+        Frog croc = frogs.get(0);
+        
+        // Create and shoot BossBulletOne towards the Frog
+        BossBulletOne bullet = new BossBulletOne();
+        getWorld().addObject(bullet, getX(), getY());
+        bullet.turnTowards(croc.getX(), croc.getY());
+    }
 
     }
 }
