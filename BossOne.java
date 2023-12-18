@@ -12,7 +12,7 @@ public class BossOne extends Actor
      * Act - do whatever the BossOne wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int shootingDelay = 60;
+    private int shootingDelay = 40;
     private int shootingTimer = 0;
     int bossHp = 100;
     public void act()

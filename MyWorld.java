@@ -47,4 +47,7 @@ public class MyWorld extends World
         BossOne snake = new BossOne();
         addObject(snake, 500, 200);
     }
+    
+    
+    
 }

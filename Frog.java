@@ -13,35 +13,39 @@ public class Frog extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     int frogHp = 10;
-    String facing = "right";
+    
     
     public void act()
     {
         // Add your action code here.
-        if(Greenfoot.isKeyDown("a"))
-        {
-             move(-3);
-             
-        }
-        else if (Greenfoot.isKeyDown("d"))
-        {
-             move(3);
-             
-        }
-        else if (Greenfoot.isKeyDown("w"))
-        {
-            moveUp();
-        }
-        else if (Greenfoot.isKeyDown("s"))
-        {
-            setLocation(getX(), getY()+5);
-        }
+        handleMovement();
         shoot();
         takeDamage();
-        frogDeath();
+        
     }
     
-    private void moveUp() 
+    
+    public void handleMovement() 
+    {
+        if (Greenfoot.isKeyDown("a")) 
+        {
+            move(-3);
+        } 
+        
+        else if (Greenfoot.isKeyDown("d")) 
+        {
+            move(3);
+        } 
+        else if (Greenfoot.isKeyDown("w")) 
+        {
+            moveUp();
+        } 
+        else if (Greenfoot.isKeyDown("s")) 
+        {
+            setLocation(getX(), getY() + 5);
+        }
+    }
+    public void moveUp() 
     {
         setLocation(getX(), getY()-5);
     }
@@ -61,19 +65,29 @@ public class Frog extends Actor
         }
     }
     
-    public void takeDamage()
+    public void takeDamage() 
     {
-        if(isTouching(BossBulletOne.class))
+        BossBulletOne bullet = (BossBulletOne) getOneIntersectingObject(BossBulletOne.class);
+        if (bullet != null) 
         {
-            frogHp -= 1; 
+            frogHp -= 1;
+            getWorld().removeObject(bullet); // Remove the bullet hitting the frog
+            if (frogHp <= 0) 
+            {
+                frogDeath(); // Call frogDeath() if health is zero or below
+            }
         }
     }
     
     public void frogDeath()
     {
-        if(frogHp <= 0)
-        {
-            getWorld().removeObject(this);
+        
+        MyWorld world = (MyWorld) getWorld();
+        if (world != null) 
+        {   
+            
+            world.removeObject(this);
         }
+        
     }
 }
