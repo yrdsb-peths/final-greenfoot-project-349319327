@@ -12,19 +12,45 @@ public class BossBulletOne extends Actor
      * Act - do whatever the BossBulletOne wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int bulletspeed = 5;
+    private boolean removed = false;
     public void act()
     {
-        // Add your action code here.
-        move(bulletspeed);
-    }
-    public void boundary()
-    {   
-        MyWorld world = (MyWorld) getWorld();
-        if(getX() >= world.getWidth())
+        if (!removed) 
         {
-            
-            world.removeObject(this);
+            move(5);
+            boundary();
+            checkHitFrog();
+        }
+    }
+
+    private void boundary() 
+    {
+        if (isAtEdge() && !removed) 
+        {
+            World world = getWorld();
+            if (world != null) 
+            {
+                world.removeObject(this);
+                removed = true;
+            }
+        }
+    }
+
+    private void checkHitFrog() 
+    {
+        if (!removed) 
+        {
+            Frog frog = (Frog) getOneIntersectingObject(Frog.class);
+            if (frog != null) 
+            {
+                World world = getWorld();
+                if (world != null) 
+                {
+                    world.removeObject(this);
+                    removed = true;
+                    frog.takeDamage();
+                }
+            }
         }
     }
 }

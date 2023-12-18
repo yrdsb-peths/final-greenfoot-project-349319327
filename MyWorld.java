@@ -17,8 +17,18 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
+        GreenfootImage bg = new GreenfootImage("OIP.png");
+        bg.scale(getWidth(), getHeight());
+        setBackground(bg);
         createFrog();
         addBossOne();
+        
+    }
+    
+    public void gameWin()
+    {
+        Label gameOverLabel = new Label("You Win", 100);
+        addObject(gameOverLabel, 300, 200);
     }
     
     public void createFrog()

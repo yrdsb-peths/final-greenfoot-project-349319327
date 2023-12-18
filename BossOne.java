@@ -12,12 +12,28 @@ public class BossOne extends Actor
      * Act - do whatever the BossOne wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    private int shootingDelay = 60;
+    private int shootingTimer = 0;
     int bossHp = 100;
     public void act()
     {
         // Add your action code here.
         hit();
         die();
+        shootSpeed();
+    }
+    
+    public void shootSpeed()
+    {
+        if (shootingTimer <= 0) 
+        {
+            atkOne();
+            shootingTimer = shootingDelay;
+        } 
+        else 
+        {
+            shootingTimer--;
+        }
     }
     public void hit()
     {
@@ -33,13 +49,24 @@ public class BossOne extends Actor
     {
         if(bossHp <= 0)
         {
-             World world = getWorld();
+            MyWorld world = (MyWorld) getWorld();
             if (world != null) 
-            {
+            {   
+                world.gameWin();
                 world.removeObject(this);
             }
         }
     }
     
-    
+    public void atkOne()
+    {   
+        Frog croc = getWorld().getObjects(Frog.class).get(0); 
+        if (croc != null) 
+        {
+            BossBulletOne bullet = new BossBulletOne();
+            getWorld().addObject(bullet, getX(), getY());
+            bullet.turnTowards(croc.getX(), croc.getY());
+        }
+
+    }
 }
