@@ -19,7 +19,7 @@ public class BossBulletOne extends Actor
         {
             move(5);
             boundary();
-            checkHitFrog();
+            
         }
     }
 

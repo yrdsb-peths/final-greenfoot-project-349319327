@@ -12,17 +12,31 @@ public class Frog extends Actor
      * Act - do whatever the Frog wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    int frogHp = 10;
+    private int frogHp = 10;
+    private HealthBar healthBar;
+
+    public Frog() 
+    {
+         // Adjust position of the health bar
+    }
     
-    
+    public void addedToWorld(World world) 
+    {
+        healthBar = new HealthBar(frogHp);
+        world.addObject(healthBar, getX(), getY() - 20); // Adjust position of the health bar
+    }
+
     public void act()
     {
         // Add your action code here.
+
         handleMovement();
         shoot();
         takeDamage();
         
     }
+    
+    
     
     
     public void handleMovement() 
@@ -76,6 +90,7 @@ public class Frog extends Actor
             {
                 frogDeath(); // Call frogDeath() if health is zero or below
             }
+            healthBar.updateHealth(frogHp);
         }
     }
     
