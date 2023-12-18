@@ -21,11 +21,14 @@ public class Bullet extends Actor
     }
     public void boundary()
     {   
-        MyWorld world = (MyWorld) getWorld();
-        if(getX() >= world.getWidth())
+        if (isAtEdge()) 
         {
-            
-            world.removeObject(this);
+            World world = getWorld();
+            if (world != null) 
+            {
+                world.removeObject(this);
+                
+            }
         }
     }
 }
