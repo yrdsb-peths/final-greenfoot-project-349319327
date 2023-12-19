@@ -48,6 +48,11 @@ public class MyWorld extends World
         addObject(snake, 500, 200);
     }
     
+    public void gameLose()
+    {
+        Label gameOverLabel = new Label("You Lose", 100);
+        addObject(gameOverLabel, 300, 200);
+    }
     
     
 }
