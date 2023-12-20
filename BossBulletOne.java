@@ -12,9 +12,15 @@ public class BossBulletOne extends Actor
      * Act - do whatever the BossBulletOne wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
     private boolean removed = false;
     public void act()
     {
+        GreenfootImage atkImage = new GreenfootImage("greenBall.png");
+        int width = atkImage.getWidth() -2 ; 
+        int height = atkImage.getHeight() -2; 
+        atkImage.scale(width, height);
+        setImage(atkImage);
         if (!removed) 
         {
             move(5);

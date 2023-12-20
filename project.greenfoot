@@ -1,6 +1,6 @@
 #Greenfoot project file
-class.BossBulletOne.image=bomb.png
-class.BossOne.image=snake.png
+class.BossBulletOne.image=pixil-frame-0\ (1).png
+class.BossOne.image=pixil-frame-0\ (2).png
 class.Bullet.image=ball.png
 class.Frog.image=alligator.png
 class.Titlescreen.image=background.jpg
