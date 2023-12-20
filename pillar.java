@@ -16,6 +16,11 @@ public class pillar extends Actor
     public void act()
     {
         // Add your action code here.
+        GreenfootImage pillarImage = new GreenfootImage("pillar.png");
+        int width = pillarImage.getWidth() ; 
+        int height = pillarImage.getHeight() * 2; 
+        pillarImage.scale(width, height);
+        setImage(pillarImage);
         duration();
     }
     
