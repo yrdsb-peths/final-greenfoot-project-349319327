@@ -20,7 +20,7 @@ public class BossOne extends Actor
     public void act()
     {
         // Add your action code here.
-        GreenfootImage bossImage = new GreenfootImage("bossOne.png");
+        GreenfootImage bossImage = new GreenfootImage("images/bossOne_sprite/bossOne.png");
         int newWidth = bossImage.getWidth() * 2; 
         int newHeight = bossImage.getHeight() * 2; 
         bossImage.scale(newWidth, newHeight);
