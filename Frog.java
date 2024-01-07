@@ -100,7 +100,7 @@ public class Frog extends Actor
         MyWorld world = (MyWorld) getWorld();
         if (world != null) 
         {   
-            
+            world.gameLose();
             world.removeObject(this);
         }
         

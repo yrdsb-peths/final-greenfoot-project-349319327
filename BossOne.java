@@ -15,16 +15,24 @@ public class BossOne extends Actor
      */
     private int shootingDelay = 60;
     private int shootingTimer = 0;
+    private int attackState = 0;
     int bossHp = 100;
     public void act()
     {
         // Add your action code here.
-        
+        GreenfootImage bossImage = new GreenfootImage("images/bossOne_sprite/bossOne.png");
+        int newWidth = bossImage.getWidth() * 2; 
+        int newHeight = bossImage.getHeight() * 2; 
+        bossImage.scale(newWidth, newHeight);
+        setImage(bossImage);
         hit();
         die();
         shootSpeed();
         
     }
+    
+     
+
     
     public void shootSpeed()
     {
@@ -64,7 +72,8 @@ public class BossOne extends Actor
     public void atkOne()
     {      
         List<Frog> frogs = getWorld().getObjects(Frog.class);
-         if (getWorld().getObjects(Frog.class).size() > 0) {
+        if (getWorld().getObjects(Frog.class).size() > 0) 
+        {
         // Access the first Frog (index 0) from the list
         Frog croc = frogs.get(0);
         
@@ -72,7 +81,19 @@ public class BossOne extends Actor
         BossBulletOne bullet = new BossBulletOne();
         getWorld().addObject(bullet, getX(), getY());
         bullet.turnTowards(croc.getX(), croc.getY());
+        }
+    
     }
-
+    
+    public void pillarAtk()
+    {
+        
+        for (int i = 0; i < 3; i++) 
+        {
+            pillar pillar = new pillar();
+            // Adjust X and Y coordinates as needed for the pillars' positions
+            getWorld().addObject(pillar, getX() + (i * 100), getY());
+        }
+    
     }
 }
