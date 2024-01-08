@@ -8,7 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    public int hit = 0;
+    Label hitLabel;
+    Label hitCounterLabel;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -22,6 +24,10 @@ public class MyWorld extends World
         setBackground(bg);
         createFrog();
         addBossOne();
+        hitLabel = new Label("", 30); 
+        addObject(hitLabel, 100, 50); 
+        hitCounterLabel = new Label("Got Hit: ", 30);  
+        addObject(hitCounterLabel, 50, 50);
         
     }
     
@@ -29,6 +35,8 @@ public class MyWorld extends World
     {
         Label gameOverLabel = new Label("You Win", 100);
         addObject(gameOverLabel, 300, 200);
+        Label gotHit = new Label("You got hit " + hit + " times!", 70);
+        addObject(gotHit, 300, 300);
     }
     
     public void createFrog()
@@ -54,5 +62,13 @@ public class MyWorld extends World
         addObject(gameOverLabel, 300, 200);
     }
     
+    public void hitCounter()
+    {
+        hit++;
+        if(hitLabel != null)
+        {
+            hitLabel.setValue(hit);
+        }
+    }
     
 }

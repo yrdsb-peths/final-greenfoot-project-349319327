@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class World2 extends World
 {
-
+    
     /**
      * Constructor for objects of class World2.
      * 
@@ -21,4 +21,6 @@ public class World2 extends World
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
     }
+    
+    
 }

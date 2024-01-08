@@ -82,10 +82,14 @@ public class Frog extends Actor
     public void takeDamage() 
     {
         BossBulletOne bullet = (BossBulletOne) getOneIntersectingObject(BossBulletOne.class);
+        
         if (bullet != null) 
         {
             frogHp -= 1;
-            getWorld().removeObject(bullet); // Remove the bullet hitting the frog
+            getWorld().removeObject(bullet);
+            MyWorld world = (MyWorld) getWorld();
+            world.hitCounter();
+            
             if (frogHp <= 0) 
             {
                 frogDeath(); // Call frogDeath() if health is zero or below
