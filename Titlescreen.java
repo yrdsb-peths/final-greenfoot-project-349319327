@@ -36,13 +36,13 @@ public class Titlescreen extends World
     private void prepare()
     {
         Label label = new Label("Press <space> to Start", 40);
-        addObject(label,296,300);
-        label.setLocation(393,300);
+        addObject(label,300,300);
+        label.setLocation(300,300);
         Label label2 = new Label("Use a, d, w, s to move", 40);
-        addObject(label2,276,228);
-        label2.setLocation(304,228);
+        addObject(label2,300,300);
+        label2.setLocation(300,250);
         Label label3 = new Label("Press mouse2 to shoot", 40);
         addObject(label3,296,278);
-        label3.setLocation(393,100);
+        label3.setLocation(300,350);
     }
 }
