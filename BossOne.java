@@ -8,7 +8,8 @@ import java.util.List;
  * @version (a version number or a date)
  */
 public class BossOne extends Actor
-{
+{   
+    GreenfootImage[] idle = new GreenfootImage[2];
     /**
      * Act - do whatever the BossOne wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -17,18 +18,45 @@ public class BossOne extends Actor
     private int shootingTimer = 0;
     private int attackState = 0;
     int bossHp = 100;
+    String facing = "left";
+    SimpleTimer animationTimer = new SimpleTimer();
+    public BossOne()
+    {
+        for(int i = 0; i < idle.length; i++)
+        {
+            idle[i] = new GreenfootImage("images/bossOne_sprite/bossOne" + i +".png");
+            int newWidth = idle[i].getWidth() * 2; 
+            int newHeight = idle[i].getHeight() * 2; 
+        
+            idle[i].scale(newWidth, newHeight);
+        }
+        animationTimer.mark();
+        setImage(idle[0]);
+    }
+    
+    int imageIndex = 0;
+    public void animateBoss()
+    {
+        if(animationTimer.millisElapsed() < 220)
+        {
+            return;
+        }
+        animationTimer.mark();
+        if (facing.equals("left"))  
+        {
+            setImage(idle[imageIndex]);
+            imageIndex = (imageIndex + 1) % idle.length;
+        } 
+        
+    }
+    
     public void act()
     {
         // Add your action code here.
-        GreenfootImage bossImage = new GreenfootImage("images/bossOne_sprite/bossOne.png");
-        int newWidth = bossImage.getWidth() * 2; 
-        int newHeight = bossImage.getHeight() * 2; 
-        bossImage.scale(newWidth, newHeight);
-        setImage(bossImage);
         hit();
         die();
         shootSpeed();
-        
+        animateBoss();
     }
     
      
