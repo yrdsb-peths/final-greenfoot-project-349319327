@@ -17,8 +17,8 @@ public class BossBulletOne extends Actor
     public void act()
     {
         GreenfootImage atkImage = new GreenfootImage("greenBall.png");
-        int width = atkImage.getWidth() -2 ; 
-        int height = atkImage.getHeight() -2; 
+        int width = atkImage.getWidth() -10 ; 
+        int height = atkImage.getHeight() -10; 
         atkImage.scale(width, height);
         setImage(atkImage);
         if (!removed) 
