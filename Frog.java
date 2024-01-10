@@ -29,7 +29,11 @@ public class Frog extends Actor
     public void act()
     {
         // Add your action code here.
-
+        GreenfootImage frogImage = new GreenfootImage("frog.png");
+        int visibleWidth = 50; // Replace 50 with the desired visible width of the frog
+        int visibleHeight = 50; // Replace 50 with the desired visible height of the frog
+        frogImage.scale(visibleWidth, visibleHeight);
+        setImage(frogImage);
         handleMovement();
         shoot();
         takeDamage();
@@ -70,8 +74,7 @@ public class Frog extends Actor
             int mouseX = Greenfoot.getMouseInfo().getX();
             int mouseY = Greenfoot.getMouseInfo().getY();
             
-            // Calculate angle towards mouse position
-            turnTowards(mouseX, mouseY);
+            
             
             // Create and add a bullet
             getWorld().addObject(new Bullet(), getX(), getY()); 
