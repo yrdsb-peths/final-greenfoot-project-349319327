@@ -15,6 +15,8 @@ public class BossOne extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private int shootingDelay = 60;
+    private int laserDelay = 120;
+    private int laserLife = 2;
     private int shootingTimer = 0;
     private int attackState = 0;
     int bossHp = 100;
@@ -55,14 +57,15 @@ public class BossOne extends Actor
         // Add your action code here.
         hit();
         die();
-        shootSpeed();
+        bulletSpeed();
+        laserSpeed();
         animateBoss();
     }
     
      
 
     
-    public void shootSpeed()
+    public void bulletSpeed()
     {
         if (shootingTimer <= 0) 
         {
@@ -103,25 +106,50 @@ public class BossOne extends Actor
         if (getWorld().getObjects(Frog.class).size() > 0) 
         {
         // Access the first Frog (index 0) from the list
-        Frog croc = frogs.get(0);
-        
-        // Create and shoot BossBulletOne towards the Frog
-        BossBulletOne bullet = new BossBulletOne();
-        getWorld().addObject(bullet, getX(), getY());
-        bullet.turnTowards(croc.getX(), croc.getY());
+            Frog croc = frogs.get(0);
+            
+            // Create and shoot BossBulletOne towards the Frog
+            BossBulletOne bullet = new BossBulletOne();
+            getWorld().addObject(bullet, getX(), getY());
+            bullet.turnTowards(croc.getX(), croc.getY());
         }
     
     }
     
-    public void pillarAtk()
+    public void laserSpeed()
     {
-        
-        for (int i = 0; i < 3; i++) 
+        if (shootingTimer <= 0) 
         {
-            pillar pillar = new pillar();
-            // Adjust X and Y coordinates as needed for the pillars' positions
-            getWorld().addObject(pillar, getX() + (i * 100), getY());
+            laser();
+            shootingTimer = laserDelay;
+        } 
+        else 
+        {
+            shootingTimer--;
         }
+    }
     
+    public void laser()
+    {
+        List<Frog> frogs = getWorld().getObjects(Frog.class);
+        if (getWorld().getObjects(Frog.class).size() > 0) 
+        {
+        // Access the first Frog (index 0) from the list
+            Frog croc = frogs.get(0);
+            
+            // Create and shoot BossBulletOne towards the Frog
+            Laser beam = new Laser();
+            int laserWidth = getX()*3;
+            getWorld().addObject(beam, getX(), getY());
+            beam.turnTowards(croc.getX(), croc.getY());
+            laserLife--;
+            if (laserLife <= 0) 
+            {   
+                MyWorld world = (MyWorld) getWorld();
+                world.removeObject(beam);
+            
+            } 
+        }
+        
     }
 }

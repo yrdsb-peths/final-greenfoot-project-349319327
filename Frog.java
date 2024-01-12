@@ -30,8 +30,8 @@ public class Frog extends Actor
     {
         // Add your action code here.
         GreenfootImage frogImage = new GreenfootImage("frog.png");
-        int visibleWidth = 50; // Replace 50 with the desired visible width of the frog
-        int visibleHeight = 50; // Replace 50 with the desired visible height of the frog
+        int visibleWidth = 70; // Replace 50 with the desired visible width of the frog
+        int visibleHeight = 70; // Replace 50 with the desired visible height of the frog
         frogImage.scale(visibleWidth, visibleHeight);
         setImage(frogImage);
         handleMovement();
