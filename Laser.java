@@ -16,6 +16,7 @@ public class Laser extends Actor
     {
         // Add your action code here.
         GreenfootImage beam = new GreenfootImage("laser.png");
+        beam.scale(1200, 300);
         setImage(beam);
     }
 }
