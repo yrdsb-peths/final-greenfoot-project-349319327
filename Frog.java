@@ -37,6 +37,7 @@ public class Frog extends Actor
         handleMovement();
         shoot();
         takeDamage();
+        
         if (frogHp <= 0) 
         {
                 frogDeath(); // Call frogDeath() if health is zero or below
@@ -95,7 +96,7 @@ public class Frog extends Actor
         
         if (bullet != null) 
         {
-            frogHp -= 1;
+            frogHp -= 4;
             getWorld().removeObject(bullet);
             MyWorld world = (MyWorld) getWorld();
             world.hitCounter();
@@ -104,8 +105,12 @@ public class Frog extends Actor
             healthBar.updateHealth(frogHp);
         }
         
-        Laser beam = (Laser) getOneIntersectingObject(Laser.class);
         
+    }
+    
+    public void laserCroc()
+    {   
+        Laser beam = (Laser) getOneIntersectingObject(Laser.class);
         if (beam != null) 
         {
             frogHp -= 1;
