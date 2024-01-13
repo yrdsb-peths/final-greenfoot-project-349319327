@@ -37,7 +37,10 @@ public class Frog extends Actor
         handleMovement();
         shoot();
         takeDamage();
-        
+        if (frogHp <= 0) 
+        {
+                frogDeath(); // Call frogDeath() if health is zero or below
+        }
     }
     
     
@@ -47,12 +50,12 @@ public class Frog extends Actor
     {
         if (Greenfoot.isKeyDown("a")) 
         {
-            move(-3);
+            move(-4);
         } 
         
         else if (Greenfoot.isKeyDown("d")) 
         {
-            move(3);
+            move(4);
         } 
         else if (Greenfoot.isKeyDown("w")) 
         {
@@ -61,6 +64,10 @@ public class Frog extends Actor
         else if (Greenfoot.isKeyDown("s")) 
         {
             setLocation(getX(), getY() + 5);
+        }
+        else if (Greenfoot.isKeyDown("shift"+"a"))
+        {
+            move(-8);
         }
     }
     public void moveUp() 
@@ -93,10 +100,20 @@ public class Frog extends Actor
             MyWorld world = (MyWorld) getWorld();
             world.hitCounter();
             
-            if (frogHp <= 0) 
-            {
-                frogDeath(); // Call frogDeath() if health is zero or below
-            }
+            
+            healthBar.updateHealth(frogHp);
+        }
+        
+        Laser beam = (Laser) getOneIntersectingObject(Laser.class);
+        
+        if (beam != null) 
+        {
+            frogHp -= 1;
+            
+            MyWorld world = (MyWorld) getWorld();
+            world.hitCounter();
+            
+            
             healthBar.updateHealth(frogHp);
         }
     }

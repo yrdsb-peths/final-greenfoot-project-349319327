@@ -10,18 +10,21 @@ import java.util.List;
 public class BossOne extends Actor
 {   
     GreenfootImage[] idle = new GreenfootImage[2];
+    
     /**
      * Act - do whatever the BossOne wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int shootingDelay = 60;
-    private int laserDelay = 120;
+    private int shootingDelay = 50;
+    private int laserDelay = 300;
     private int laserLife = 2;
     private int shootingTimer = 0;
     private int attackState = 0;
+    Laser beam = new Laser();
     int bossHp = 100;
     String facing = "left";
     SimpleTimer animationTimer = new SimpleTimer();
+    SimpleTimer laserTimer = new SimpleTimer();
     public BossOne()
     {
         for(int i = 0; i < idle.length; i++)
@@ -122,10 +125,18 @@ public class BossOne extends Actor
         {
             laser();
             shootingTimer = laserDelay;
+            
         } 
         else 
         {
             shootingTimer--;
+            if (laserTimer.millisElapsed() >= laserLife * 2000) 
+            {
+                MyWorld world = (MyWorld) getWorld();
+                world.removeObject(beam);
+                laserTimer.mark();// Remove the laser after 2 seconds
+            }
+            
         }
     }
     
@@ -137,18 +148,14 @@ public class BossOne extends Actor
         // Access the first Frog (index 0) from the list
             Frog croc = frogs.get(0);
             
-            // Create and shoot BossBulletOne towards the Frog
-            Laser beam = new Laser();
-            int laserWidth = getX()*3;
-            getWorld().addObject(beam, getX(), getY());
-            beam.turnTowards(croc.getX(), croc.getY());
-            laserLife--;
-            if (laserLife <= 0) 
-            {   
-                MyWorld world = (MyWorld) getWorld();
-                world.removeObject(beam);
             
-            } 
+           
+            int laserWidth = 500;
+            int laserHeight = 200;
+            getWorld().addObject(beam, laserWidth, laserHeight);
+            beam.turnTowards(croc.getX(), croc.getY());
+            
+            
         }
         
     }
