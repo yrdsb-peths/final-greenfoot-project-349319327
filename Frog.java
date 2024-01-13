@@ -29,7 +29,11 @@ public class Frog extends Actor
     public void act()
     {
         // Add your action code here.
-
+        GreenfootImage frogImage = new GreenfootImage("frog.png");
+        int visibleWidth = 70; // Replace 50 with the desired visible width of the frog
+        int visibleHeight = 70; // Replace 50 with the desired visible height of the frog
+        frogImage.scale(visibleWidth, visibleHeight);
+        setImage(frogImage);
         handleMovement();
         shoot();
         takeDamage();
@@ -70,8 +74,7 @@ public class Frog extends Actor
             int mouseX = Greenfoot.getMouseInfo().getX();
             int mouseY = Greenfoot.getMouseInfo().getY();
             
-            // Calculate angle towards mouse position
-            turnTowards(mouseX, mouseY);
+            
             
             // Create and add a bullet
             getWorld().addObject(new Bullet(), getX(), getY()); 
@@ -82,10 +85,14 @@ public class Frog extends Actor
     public void takeDamage() 
     {
         BossBulletOne bullet = (BossBulletOne) getOneIntersectingObject(BossBulletOne.class);
+        
         if (bullet != null) 
         {
             frogHp -= 1;
-            getWorld().removeObject(bullet); // Remove the bullet hitting the frog
+            getWorld().removeObject(bullet);
+            MyWorld world = (MyWorld) getWorld();
+            world.hitCounter();
+            
             if (frogHp <= 0) 
             {
                 frogDeath(); // Call frogDeath() if health is zero or below
