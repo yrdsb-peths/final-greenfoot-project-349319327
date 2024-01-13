@@ -15,13 +15,13 @@ public class BossOne extends Actor
      * Act - do whatever the BossOne wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int shootingDelay = 50;
+    private int shootingDelay = 10;
     private int laserDelay = 300;
     private int laserLife = 2;
     private int shootingTimer = 0;
     private int attackState = 0;
     Laser beam = new Laser();
-    int bossHp = 100;
+    int bossHp = 130;
     String facing = "left";
     SimpleTimer animationTimer = new SimpleTimer();
     SimpleTimer laserTimer = new SimpleTimer();
@@ -61,7 +61,7 @@ public class BossOne extends Actor
         hit();
         die();
         bulletSpeed();
-        laserSpeed();
+        
         animateBoss();
     }
     
@@ -73,7 +73,7 @@ public class BossOne extends Actor
         if (shootingTimer <= 0) 
         {
             atkOne();
-            shootingTimer = shootingDelay;
+            shootingTimer = 50;
         } 
         else 
         {
