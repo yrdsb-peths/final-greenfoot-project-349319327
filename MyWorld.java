@@ -31,6 +31,16 @@ public class MyWorld extends World
         
     }
     
+    private void prepare()
+    {
+        createFrog();
+        addBossOne();
+        hitLabel = new Label("", 30); 
+        addObject(hitLabel, 100, 50); 
+        hitCounterLabel = new Label("Got Hit: ", 30);  
+        addObject(hitCounterLabel, 50, 50);
+    }
+    
     public void gameWin()
     {
         Label gameOverLabel = new Label("You Win", 100);

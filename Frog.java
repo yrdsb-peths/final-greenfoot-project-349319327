@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Frog here.
+ * The main character, crocodile called frog, can move up, down, right and left, shoots drills at the boss
  * 
  * @author (your name) 
  * @version (a version number or a date)
