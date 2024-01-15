@@ -25,11 +25,11 @@ public class BossOne extends Actor
     public BossOne() {
     for (int i = 0; i < idle.length; i++) {
         idle[i] = new GreenfootImage("images/bossOne_sprite/bossOne" + i + ".png");
-        if (i < 2) {
-            int newWidth = idle[i].getWidth() * 3;
-            int newHeight = idle[i].getHeight() * 2;
-            idle[i].scale(newWidth, newHeight);
-        }
+        
+        int newWidth = idle[i].getWidth() * 3;
+        int newHeight = idle[i].getHeight() * 2;
+        idle[i].scale(newWidth, newHeight);
+        
     }
     animationTimer.mark();
     setImage(idle[0]);
@@ -44,11 +44,12 @@ public class BossOne extends Actor
             return;
         }
         animationTimer.mark();
-        if (facing.equals("left")) 
+        if (bossHp >= 70) 
         {
             setImage(idle[imageIndex]);
             imageIndex = (imageIndex + 1) % idle.length;
         }
+        
     }
 
 
