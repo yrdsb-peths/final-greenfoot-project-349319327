@@ -17,7 +17,7 @@ public class Frog extends Actor
 
     public Frog() 
     {
-         // Adjust position of the health bar
+         
     }
     
     public void addedToWorld(World world) 
@@ -37,10 +37,10 @@ public class Frog extends Actor
         handleMovement();
         shoot();
         takeDamage();
-        
+        laserCroc();
         if (frogHp <= 0) 
         {
-                frogDeath(); // Call frogDeath() if health is zero or below
+                frogDeath(); 
         }
     }
     

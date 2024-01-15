@@ -16,26 +16,21 @@ public class Laser extends Actor
     public Laser()
     {
         GreenfootImage beam = new GreenfootImage("laser.png");
-        int visibleWidth = 1200; // Replace 50 with the desired visible width of the frog
-        int visibleHeight = 300; // Replace 50 with the desired visible height of the frog
+        
+        int visibleWidth = 600; // Replace 50 with the desired visible width of the frog
+        int visibleHeight = 50; // Replace 50 with the desired visible height of the frog
         
         beam.scale(visibleWidth, visibleHeight);
-        
+        setRotation(getRotation() + 180);
         setImage(beam);
     }
     public void act()
     {
         // Add your action code here.
-        
+        setRotation(getRotation() + 180);
     }
     
-     private void setHitbox() 
-     {
-        int width = getImage().getWidth();
-        int height = getImage().getHeight();
-        GreenfootImage hitboxImage = new GreenfootImage(width, height);
-        setImage(hitboxImage);
-    }
+    
     
     
 }

@@ -22,21 +22,21 @@ public class BossOne extends Actor
     SimpleTimer laserTimer = new SimpleTimer();
     private BossHealthBar healthBar;
 
-    public BossOne() 
-    {
-        for (int i = 0; i < idle.length; i++) 
-        {
-            idle[i] = new GreenfootImage("images/bossOne_sprite/bossOne" + i + ".png");
-            int newWidth = idle[i].getWidth() * 2;
+    public BossOne() {
+    for (int i = 0; i < idle.length; i++) {
+        idle[i] = new GreenfootImage("images/bossOne_sprite/bossOne" + i + ".png");
+        if (i < 2) {
+            int newWidth = idle[i].getWidth() * 3;
             int newHeight = idle[i].getHeight() * 2;
             idle[i].scale(newWidth, newHeight);
         }
-        animationTimer.mark();
-        setImage(idle[0]);
+    }
+    animationTimer.mark();
+    setImage(idle[0]);
     }
 
     int imageIndex = 0;
-
+    
     public void animateBoss() 
     {
         if (animationTimer.millisElapsed() < 220) 
@@ -51,6 +51,9 @@ public class BossOne extends Actor
         }
     }
 
+
+
+
     public void act() 
     {
         hit();
@@ -58,6 +61,7 @@ public class BossOne extends Actor
         bulletSpeed();
         healthBar.updateHealth(bossHp);
         animateBoss();
+        
     }
 
     public void addedToWorld(World world) 
@@ -67,8 +71,9 @@ public class BossOne extends Actor
     }
 
     public void bulletSpeed() 
-    {
-        if (bossHp >= 60) 
+    {   
+        /* adjust the firerate of the boss*/
+        if (bossHp >= 70) 
         {
             if (shootingTimer <= 0) 
             {
@@ -92,6 +97,7 @@ public class BossOne extends Actor
             {
                 shootingTimer--;
             }
+            laserSpeed();
         }
     }
 
@@ -154,10 +160,10 @@ public class BossOne extends Actor
         if (getWorld().getObjects(Frog.class).size() > 0) 
         {
             Frog croc = frogs.get(0);
-            int laserWidth = 500;
+            int laserWidth = 100;
             int laserHeight = 200;
             getWorld().addObject(beam, laserWidth, laserHeight);
-            beam.turnTowards(croc.getX(), croc.getY());
+            beam.turnTowards(100, 200);
         }
     }
 }
