@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BossBulletOne here.
+ * bosses green fireballs
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -30,7 +30,8 @@ public class BossBulletOne extends Actor
     }
 
     private void boundary() 
-    {
+    {   
+        //removes bullet when it hits the boundary
         if (isAtEdge() && !removed) 
         {
             World world = getWorld();

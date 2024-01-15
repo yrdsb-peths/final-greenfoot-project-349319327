@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Frog here.
+ * The main character, crocodile called frog, can move up, down, right and left, shoots drills at the boss
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -38,6 +38,10 @@ public class Frog extends Actor
         shoot();
         takeDamage();
         
+        if (frogHp <= 0) 
+        {
+                frogDeath(); // Call frogDeath() if health is zero or below
+        }
     }
     
     
@@ -47,12 +51,12 @@ public class Frog extends Actor
     {
         if (Greenfoot.isKeyDown("a")) 
         {
-            move(-3);
+            move(-4);
         } 
         
         else if (Greenfoot.isKeyDown("d")) 
         {
-            move(3);
+            move(4);
         } 
         else if (Greenfoot.isKeyDown("w")) 
         {
@@ -61,6 +65,10 @@ public class Frog extends Actor
         else if (Greenfoot.isKeyDown("s")) 
         {
             setLocation(getX(), getY() + 5);
+        }
+        else if (Greenfoot.isKeyDown("shift"+"a"))
+        {
+            move(-8);
         }
     }
     public void moveUp() 
@@ -88,15 +96,29 @@ public class Frog extends Actor
         
         if (bullet != null) 
         {
-            frogHp -= 1;
+            frogHp -= 4;
             getWorld().removeObject(bullet);
             MyWorld world = (MyWorld) getWorld();
             world.hitCounter();
             
-            if (frogHp <= 0) 
-            {
-                frogDeath(); // Call frogDeath() if health is zero or below
-            }
+            
+            healthBar.updateHealth(frogHp);
+        }
+        
+        
+    }
+    
+    public void laserCroc()
+    {   
+        Laser beam = (Laser) getOneIntersectingObject(Laser.class);
+        if (beam != null) 
+        {
+            frogHp -= 1;
+            
+            MyWorld world = (MyWorld) getWorld();
+            world.hitCounter();
+            
+            
             healthBar.updateHealth(frogHp);
         }
     }
