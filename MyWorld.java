@@ -31,12 +31,33 @@ public class MyWorld extends World
         
     }
     
+    private void prepare()
+    {
+        createFrog();
+        addBossOne();
+        hitLabel = new Label("", 30); 
+        addObject(hitLabel, 100, 50); 
+        hitCounterLabel = new Label("Got Hit: ", 30);  
+        addObject(hitCounterLabel, 50, 50);
+    }
+    
     public void gameWin()
     {
         Label gameOverLabel = new Label("You Win", 100);
         addObject(gameOverLabel, 300, 200);
-        Label gotHit = new Label("You got hit " + hit + " times!", 70);
-        addObject(gotHit, 300, 300);
+    
+        if (hit == 0) 
+        {
+            Label congratsLabel = new Label("Congratulations! You didn't get hit!", 70);
+            addObject(congratsLabel, 300, 300);
+        } 
+        else 
+        {
+            Label gotHit = new Label("You got hit " + hit + " times!", 70);
+            addObject(gotHit, 300, 300);
+            Label tryZero = new Label("Try hitless next time!", 50);
+            addObject(tryZero, 300, 350);
+        }
     }
     
     public void createFrog()

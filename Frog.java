@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Frog here.
+ * The main character, crocodile called frog, can move up, down, right and left, shoots drills at the boss
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -17,7 +17,7 @@ public class Frog extends Actor
 
     public Frog() 
     {
-         // Adjust position of the health bar
+         
     }
     
     public void addedToWorld(World world) 
@@ -30,17 +30,17 @@ public class Frog extends Actor
     {
         // Add your action code here.
         GreenfootImage frogImage = new GreenfootImage("frog.png");
-        int visibleWidth = 70; // Replace 50 with the desired visible width of the frog
-        int visibleHeight = 70; // Replace 50 with the desired visible height of the frog
+        int visibleWidth = 80; // Replace 50 with the desired visible width of the frog
+        int visibleHeight = 30; // Replace 50 with the desired visible height of the frog
         frogImage.scale(visibleWidth, visibleHeight);
         setImage(frogImage);
         handleMovement();
         shoot();
         takeDamage();
-        
+        laserCroc();
         if (frogHp <= 0) 
         {
-                frogDeath(); // Call frogDeath() if health is zero or below
+                frogDeath(); 
         }
     }
     
