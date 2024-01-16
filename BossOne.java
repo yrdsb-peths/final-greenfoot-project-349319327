@@ -127,7 +127,7 @@ public class BossOne extends Actor
         {   
             //boss takes damage after being hit
             removeTouching(Bullet.class);
-            bossHp -= 4;
+            bossHp -= 3;
         }
     }
 
