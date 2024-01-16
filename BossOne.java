@@ -12,7 +12,7 @@ public class BossOne extends Actor
     GreenfootImage[] idle = new GreenfootImage[4];
     GreenfootSound beamSound = new GreenfootSound("beamSound.mp3");
     private int shootingDelay = 50;
-    private int laserDelay = 300;
+    private int laserDelay = 200;
     private int laserLife = 2;
     private int shootingTimer = 0;
     private int attackState = 0;
@@ -111,7 +111,7 @@ public class BossOne extends Actor
             if (shootingTimer <= 0) 
             {
                 atkOne();
-                shootingTimer = 60;
+                shootingTimer = 50;
             } 
             else 
             {
@@ -127,7 +127,7 @@ public class BossOne extends Actor
         {   
             //boss takes damage after being hit
             removeTouching(Bullet.class);
-            bossHp -= 3;
+            bossHp -= 2;
         }
     }
 
@@ -168,12 +168,7 @@ public class BossOne extends Actor
         else 
         {
             shootingTimer--;
-            if (laserTimer.millisElapsed() >= laserLife * 2000) 
-            {
-                MyWorld world = (MyWorld) getWorld();
-                world.removeObject(beam);
-                laserTimer.mark(); // Remove the laser after 2 seconds
-            }
+            
         }
     }
 
@@ -188,5 +183,11 @@ public class BossOne extends Actor
             getWorld().addObject(beam, laserWidth, laserHeight);
             beam.turnTowards(100, 200);
         }
+        if (laserTimer.millisElapsed() >= laserLife * 2000) 
+            {
+                MyWorld world = (MyWorld) getWorld();
+                world.removeObject(beam);
+                laserTimer.mark(); // Remove the laser after 2 seconds
+            }
     }
 }
