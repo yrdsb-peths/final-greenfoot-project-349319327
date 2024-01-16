@@ -9,8 +9,9 @@ import java.util.List;
  */
 public class BossOne extends Actor 
 {
-    GreenfootImage[] idle = new GreenfootImage[2];
-    private int shootingDelay = 70;
+    GreenfootImage[] idle = new GreenfootImage[4];
+    GreenfootSound beamSound = new GreenfootSound("beamSound.mp3");
+    private int shootingDelay = 50;
     private int laserDelay = 300;
     private int laserLife = 2;
     private int shootingTimer = 0;
@@ -25,10 +26,20 @@ public class BossOne extends Actor
     public BossOne() {
     for (int i = 0; i < idle.length; i++) {
         idle[i] = new GreenfootImage("images/bossOne_sprite/bossOne" + i + ".png");
-        
-        int newWidth = idle[i].getWidth() * 3;
-        int newHeight = idle[i].getHeight() * 2;
-        idle[i].scale(newWidth, newHeight);
+        if(i < 2)
+        {   
+            //scale the first 2 images of the index
+            int newWidth = idle[i].getWidth() * 3;
+            int newHeight = idle[i].getHeight() * 2;
+            idle[i].scale(newWidth, newHeight);
+        }
+        else
+        {   
+            //scale the last 2 images of the index
+            int newWidth = idle[i].getWidth() * 3;
+            int newHeight = idle[i].getHeight() * 2;
+            idle[i].scale(newWidth, newHeight);
+        }
         
     }
     animationTimer.mark();
@@ -44,13 +55,20 @@ public class BossOne extends Actor
             return;
         }
         animationTimer.mark();
-        if (bossHp >= 70) 
+        if (facing.equals("left")) 
         {
-            setImage(idle[imageIndex]);
-            imageIndex = (imageIndex + 1) % idle.length;
+            // Check bossHp and select the appropriate image
+            if (bossHp > 70) {
+                setImage(idle[imageIndex]);  // Use the first two images
+            } else {
+                // Use the third and fourth images
+                setImage(idle[imageIndex + 2]);
+            }
+    
+            imageIndex = (imageIndex + 1) % 2;  // Reset to 0 when reaching the end
         }
-        
     }
+
 
 
 
@@ -66,7 +84,8 @@ public class BossOne extends Actor
     }
 
     public void addedToWorld(World world) 
-    {
+    {   
+        //adds healthbar
         healthBar = new BossHealthBar(bossHp);
         world.addObject(healthBar, world.getWidth() / 2, world.getHeight() - 10);
     }
@@ -105,7 +124,8 @@ public class BossOne extends Actor
     public void hit() 
     {
         if (isTouching(Bullet.class)) 
-        {
+        {   
+            //boss takes damage after being hit
             removeTouching(Bullet.class);
             bossHp -= 2;
         }
@@ -131,6 +151,7 @@ public class BossOne extends Actor
         {
             Frog croc = frogs.get(0);
             BossBulletOne bullet = new BossBulletOne();
+            Greenfoot.playSound("fireball.mp3");
             getWorld().addObject(bullet, getX(), getY());
             bullet.turnTowards(croc.getX(), croc.getY());
         }
@@ -141,6 +162,7 @@ public class BossOne extends Actor
         if (shootingTimer <= 0) 
         {
             laser();
+            Greenfoot.playSound("beamSound.mp3");
             shootingTimer = laserDelay;
         } 
         else 
