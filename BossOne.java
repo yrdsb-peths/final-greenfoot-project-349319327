@@ -17,7 +17,7 @@ public class BossOne extends Actor
     private int shootingTimer = 0;
     private int attackState = 0;
     Laser beam = new Laser();
-    int bossHp = 130;
+    int bossHp = 160;
     String facing = "left";
     SimpleTimer animationTimer = new SimpleTimer();
     SimpleTimer laserTimer = new SimpleTimer();
@@ -127,7 +127,7 @@ public class BossOne extends Actor
         {   
             //boss takes damage after being hit
             removeTouching(Bullet.class);
-            bossHp -= 2;
+            bossHp -= 4;
         }
     }
 
