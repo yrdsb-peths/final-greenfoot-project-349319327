@@ -63,6 +63,7 @@ dependency8.type=UsesDependency
 dependency9.from=Frog
 dependency9.to=BossBulletOne
 dependency9.type=UsesDependency
+<<<<<<< Updated upstream
 editor.fx.0.height=737
 editor.fx.0.width=814
 editor.fx.0.x=360
@@ -70,6 +71,15 @@ editor.fx.0.y=26
 height=830
 package.numDependencies=19
 package.numTargets=13
+=======
+editor.fx.0.height=1056
+editor.fx.0.width=1936
+editor.fx.0.x=-8
+editor.fx.0.y=-8
+height=1056
+package.numDependencies=19
+package.numTargets=14
+>>>>>>> Stashed changes
 project.charset=windows-1252
 publish.hasSource=false
 publish.locked=true
