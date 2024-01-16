@@ -5,5 +5,5 @@ Consider using **Markdown** syntax to format the text in this file. [Markdown ba
 
 ##final project
 
-This game is a simple boss fight, shoot the boss while not getting hit. Movement keys are w(up), a(left), s(down), d(right) and right click to shoot.
+This game is a simple boss fight, shoot the boss while not getting hit. Movement keys are w(up), a(left), s(down), d(right) and right click to shoot. Defeating the boss hitless will result in a new message on the victory screen
 
