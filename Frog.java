@@ -81,7 +81,7 @@ public class Frog extends Actor
         if (Greenfoot.mouseClicked(null)) {
             int mouseX = Greenfoot.getMouseInfo().getX();
             int mouseY = Greenfoot.getMouseInfo().getY();
-            
+            Greenfoot.playSound("gun.mp3");
             
             
             // Create and add a bullet
