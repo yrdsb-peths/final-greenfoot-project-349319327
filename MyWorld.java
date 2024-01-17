@@ -48,7 +48,7 @@ public class MyWorld extends World
     
         if (hit == 0) 
         {
-            Label congratsLabel = new Label("Congratulations! You didn't get hit!", 70);
+            Label congratsLabel = new Label("Congratulations! You didn't get hit!", 40);
             addObject(congratsLabel, 300, 300);
         } 
         else 
