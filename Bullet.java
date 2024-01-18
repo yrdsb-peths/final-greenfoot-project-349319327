@@ -27,7 +27,8 @@ public class Bullet extends Actor
     public void boundary()
     {   
         if (isAtEdge()) 
-        {
+        {   
+            //remove bullet when it hits the ledge
             World world = getWorld();
             if (world != null) 
             {

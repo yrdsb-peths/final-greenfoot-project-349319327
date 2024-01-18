@@ -78,7 +78,7 @@ public class Frog extends Actor
     }
     
     public void shoot()
-    {
+    {   
         if (Greenfoot.mouseClicked(null)) {
             int mouseX = Greenfoot.getMouseInfo().getX();
             int mouseY = Greenfoot.getMouseInfo().getY();
@@ -111,6 +111,7 @@ public class Frog extends Actor
     
     public void laserCroc()
     {   
+        //allows laser to deal damage to croc
         Laser beam = (Laser) getOneIntersectingObject(Laser.class);
         if (beam != null) 
         {

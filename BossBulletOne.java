@@ -44,7 +44,8 @@ public class BossBulletOne extends Actor
     }
 
     private void checkHitFrog() 
-    {
+    {   
+        //removes bullet when bullet hit frog
         if (!removed) 
         {
             Frog frog = (Frog) getOneIntersectingObject(Frog.class);
