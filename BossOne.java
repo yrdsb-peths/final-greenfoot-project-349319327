@@ -134,7 +134,8 @@ public class BossOne extends Actor
     public void die() 
     {
         if (bossHp <= 0) 
-        {
+        {   
+            //remove the boss when boss hp reach 0
             MyWorld world = (MyWorld) getWorld();
             if (world != null) 
             {

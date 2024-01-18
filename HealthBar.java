@@ -31,11 +31,12 @@ public class HealthBar extends Actor
     {
         currentHp = newHp;
         updateImage();
-        
+        //update the healthbar
     }
 
     private void updateImage() 
-    {
+    {   
+        // add gray rectangle to represent max health
         GreenfootImage healthBar = new GreenfootImage(maxHp + 2, 10);
         healthBar.setColor(Color.GRAY);
         healthBar.fill();
@@ -46,7 +47,8 @@ public class HealthBar extends Actor
     }
     
     public void handleMovement() 
-    {
+    {   
+        //makes the healthbar follow the croc/frog at all times
         if (Greenfoot.isKeyDown("a")) 
         {
             move(-3);
